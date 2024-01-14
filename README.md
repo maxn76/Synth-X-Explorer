@@ -36,8 +36,10 @@ To make the bank permanent it is necessary
 - confirm with key 2 ENTER
 
 ATTENTION:
-- the digital-7 font released as freeware for personal use
+- The digital-7 font released as freeware for personal use
 - rtmidi released under the MIT license
+- The user interface has been done using Pygubu. Pygubu is a RAD tool to enable quick and easy development of user interfaces for the Python's tkinter module
+- The name Roland belongs to the Roland company
 
 I AM NOT A PROFESSIONAL PROGRAMMER, I ONLY PROGRAM FOR PASSION AND FUN.
 
