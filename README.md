@@ -8,7 +8,7 @@ pip install python-rtmidi
 unzip the .zip file
 right click on each individual .ttf file
 and select INSTALL from the menu
-- the default.ptc file must be in main
+- the default.ptc file must be in main folder
 
 USE:
 Upon startup, the software automatically searches for and finds the Roland S-1 synthesizer.
