@@ -6,11 +6,12 @@ from tkinter import filedialog as open_file
 from tkinter.filedialog import asksaveasfile as save_as
 import json
 
-DEBUG = False
+DEBUG = True
 
 midi_out = rtmidi.MidiOut()
 midi_in = rtmidi.MidiIn()
 midi_in.ignore_types(sysex=False)
+midi_k = rtmidi.MidiIn()
 available_out_ports = midi_out.get_ports()
 available_in_ports = midi_in.get_ports()
 
@@ -24,23 +25,28 @@ m_ch = 2
 global p_c_ch
 p_c_ch = 15
 
-in_port = ''
+#in_port = ''
 for x in range(0, len(available_in_ports)):
     if 'S-1' in available_in_ports[x]:
         in_port = x
-    else:
-        in_port = ''
+        break
 
-out_port = ''
+#in_port = ''
+for x in range(0, len(available_in_ports)):
+    if 'Akai' in available_in_ports[x]:
+        midi_k_port = x
+        break
+
+#out_port = ''
 for x in range(0, len(available_out_ports)):
     if 'S-1' in available_out_ports[x]:
         out_port = x
-    else:
-        out_port = ''
+        break
 
-if in_port == '' or out_port == '':
-    exit()
 
+# if in_port == '' or out_port == '':
+#     exit()
+print(in_port, out_port)
 if available_out_ports:
     midi_out.open_port(out_port)
 
@@ -50,6 +56,8 @@ if available_in_ports:
 else:
     midi_out.open_virtual_port("My virtual output")
     midi_in.open_virtual_port("My virtual input")
+
+midi_k.open_port(midi_k_port)
 
 
 def handle_input(event, data=None):
@@ -74,12 +82,24 @@ def handle_input(event, data=None):
         else:
             cmd_label['text'] = w_name[index_name] + ': ' + str(value)
 
+def handle_midi_k_input(event, data=None):
+    message, deltatime = event
+    cc = int(message[0])
+    com = int(message[1])
+    value = message[2]
+
+
+    midi_out.send_message([0x90 + m_ch, com, value])
 
 def midi_in_message():
     midi_in.set_callback(handle_input)
 
+def midi_k_message():
+    midi_k.set_callback(handle_midi_k_input)
+
 
 midi_in_message()
+midi_k_message()
 
 
 def get_all_widget_value():
