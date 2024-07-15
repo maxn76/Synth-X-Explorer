@@ -6,7 +6,7 @@ from tkinter import filedialog as open_file
 from tkinter.filedialog import asksaveasfile as save_as
 import json
 
-DEBUG = True
+DEBUG = False
 
 midi_out = rtmidi.MidiOut()
 midi_in = rtmidi.MidiIn()
@@ -104,20 +104,23 @@ midi_k_message()
 
 def get_all_widget_value():
     for x in range(0, len_widget):
-        full_name = str(widget[x].cget("label"))
-        p = full_name.find('.')
-        name = full_name[-((len(full_name) - p - 1)):]
-        com = int(full_name[0:p])
-        value = int(widget[x].get())
-        control[x][0] = full_name
-        control[x][1] = com
-        control[x][2] = value
         try:
-            widget_label[com]['text'] = extra_data[com][value]
+            full_name = str(widget[x].cget("label"))
+            p = full_name.find('.')
+            name = full_name[-((len(full_name) - p - 1)):]
+            com = int(full_name[0:p])
+            value = int(widget[x].get())
+            control[x][0] = full_name
+            control[x][1] = com
+            control[x][2] = value
+            try:
+                widget_label[com]['text'] = extra_data[com][value]
+            except:
+                widget_label[com]['text'] = value
+            if DEBUG:
+                print('name', name, 'com', com, 'value', value)
         except:
-            widget_label[com]['text'] = value
-        if DEBUG:
-            print('name', name, 'com', com, 'value', value)
+            pass
 
 
 def select_pattern(event):
@@ -219,24 +222,32 @@ def click_button(event):
 
 def init_patch():
     for x in range(0, len_widget):
-        w_name[x] = str(control[x][0])
-        w_com[x] = control[x][1]
-        w_value[x] = control[x][2]
-        widget[x].set(w_value[x])
         try:
-            widget_label[w_com[x]]['text'] = extra_data[w_com[x]][w_value[x]]
-        except:
-            widget_label[w_com[x]]['text'] = w_value[x]
-
-        if DEBUG:
-            print('com' + ' ' + str(w_com[x]) + 'value' + ' ' + str(w_value[x]))
-    for x in range(0, len_controls):
-        if x in w_com:
+            w_name[x] = str(control[x][0])
+            w_com[x] = control[x][1]
+            w_value[x] = control[x][2]
+            widget[x].set(w_value[x])
+            try:
+                widget_label[w_com[x]]['text'] = extra_data[w_com[x]][w_value[x]]
+            except:
+                widget_label[w_com[x]]['text'] = w_value[x]
 
             if DEBUG:
-                print('com' + ' ' + str(w_com[w_com.index(x)]) + 'value' + ' ' + str(w_value[w_com.index(x)]))
+                print('com' + ' ' + str(w_com[x]) + 'value' + ' ' + str(w_value[x]))
+        except:
+            pass
 
-            midi_out.send_message([0xB0 + m_ch, w_com[w_com.index(x)], w_value[w_com.index(x)]])
+
+    for x in range(0, len_controls):
+        if x in w_com:
+            try:
+
+                if DEBUG:
+                    print('com' + ' ' + str(w_com[w_com.index(x)]) + 'value' + ' ' + str(w_value[w_com.index(x)]))
+
+                midi_out.send_message([0xB0 + m_ch, w_com[w_com.index(x)], w_value[w_com.index(x)]])
+            except:
+                pass
     cmd_label['text'] = '--------'
 
 
@@ -473,30 +484,30 @@ widget_label[29].configure(
     text='')
 widget_label[29].place(anchor="nw", x=310, y=60)
 ######
-widget[3] = tk.Scale(frame_extra2)
-current_value[3] = tk.IntVar()
-widget[3].configure(
-    from_=127,
-    label='26.FILT_KEYB_F',
-    orient="vertical",
-    to=0,
-    variable=current_value,
-    activebackground=abg_color,
-    troughcolor=t_color,
-    foreground=fg_color,
-    highlightthickness=0,
-    showvalue=0,
-    background=bg_color)
-widget[3].place(anchor="nw", x=430, y=20)
-widget[3].bind("<ButtonRelease>", update_value)
-widget[3].bind("<B1-Motion>", update_value)
-widget_label[26] = tk.Label(frame_extra2)
-widget_label[26].configure(
-    background=w_l_bg,
-    foreground=w_l_fg,
-    borderwidth=0,
-    text='')
-widget_label[26].place(anchor="nw", x=450, y=60)
+# widget[3] = tk.Scale(frame_extra2)
+# current_value[3] = tk.IntVar()
+# widget[3].configure(
+#     from_=127,
+#     label='26.FILT_KEYB_F',
+#     orient="vertical",
+#     to=0,
+#     variable=current_value,
+#     activebackground=abg_color,
+#     troughcolor=t_color,
+#     foreground=fg_color,
+#     highlightthickness=0,
+#     showvalue=0,
+#     background=bg_color)
+# widget[3].place(anchor="nw", x=430, y=20)
+# widget[3].bind("<ButtonRelease>", update_value)
+# widget[3].bind("<B1-Motion>", update_value)
+# widget_label[26] = tk.Label(frame_extra2)
+# widget_label[26].configure(
+#     background=w_l_bg,
+#     foreground=w_l_fg,
+#     borderwidth=0,
+#     text='')
+# widget_label[26].place(anchor="nw", x=450, y=60)
 frame_extra2.place(anchor="nw", bordermode="outside", x=140, y=560)
 frame_extra2.grid_propagate(0)
 frame_efx = tk.Frame(frame1)
