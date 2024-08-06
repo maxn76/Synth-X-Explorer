@@ -15,9 +15,9 @@ midi_k = rtmidi.MidiIn()
 available_out_ports = midi_out.get_ports()
 available_in_ports = midi_in.get_ports()
 
-if DEBUG:
-    print(available_out_ports)
-    print(available_in_ports)
+
+print(available_out_ports)
+print(available_in_ports)
 
 global m_ch
 m_ch = 2
@@ -36,6 +36,8 @@ for x in range(0, len(available_in_ports)):
     if 'Akai' in available_in_ports[x]:
         midi_k_port = x
         break
+    else:
+        midi_k_port = None
 
 #out_port = ''
 for x in range(0, len(available_out_ports)):
@@ -57,7 +59,8 @@ else:
     midi_out.open_virtual_port("My virtual output")
     midi_in.open_virtual_port("My virtual input")
 
-midi_k.open_port(midi_k_port)
+if midi_k_port != None:
+    midi_k.open_port(midi_k_port)
 
 
 def handle_input(event, data=None):
@@ -150,7 +153,39 @@ def select_midi_ch(event):
     m_ch = int(midi_ch.get()) - 1
     if DEBUG:
         print('m_ch: ', m_ch)
+def select_midi_in_d(event):
+    if midi_in_d.get() != midi_k_d.get():
+        global in_port
+        in_port = available_in_ports.index(midi_in_d.get())
+        midi_in.close_port()
+        midi_in.open_port(in_port)
+        midi_in_message()
 
+    else:
+        midi_in_d.set(available_in_ports[in_port])
+        if DEBUG:
+            print('port', port, "already in use!")
+
+
+def select_midi_out_d(event):
+        global out_port
+        out_port = available_out_ports.index(midi_out_d.get())
+        midi_out.close_port()
+        midi_out.open_port(out_port)
+
+
+def select_midi_k_d(event):
+    if midi_in_d.get() != midi_k_d.get():
+        global midi_k_port
+        midi_k_port = available_in_ports.index(midi_k_d.get())
+        midi_k.close_port()
+        midi_k.open_port(midi_k_port)
+        midi_k_message()
+
+    else:
+        midi_k_d.set(available_in_ports[midi_k_port])
+        if DEBUG:
+            print('port', port, "already in use!")
 
 def update_value(event):
     w = event.widget
@@ -248,7 +283,7 @@ def init_patch():
                 midi_out.send_message([0xB0 + m_ch, w_com[w_com.index(x)], w_value[w_com.index(x)]])
             except:
                 pass
-    cmd_label['text'] = '--------'
+    cmd_label['text'] = '------------------------'
 
 
 def update_control():
@@ -981,59 +1016,6 @@ optionmenu2 = tk.OptionMenu(
     Label, program_change2, *values, command=select_pattern)
 optionmenu2.place(anchor="nw", width=50, height=25, x=630, y=5)
 
-program_change_ch_label = tk.Label(Label)
-program_change_ch_label.configure(anchor="w", justify="left", background=bg_info_label, foreground=fg_info_label,
-                                  font=font_label, text='P.C. CH:')
-program_change_ch_label.place(anchor="nw", width=140, height=25, x=1110, y=5)
-program_change_ch = tk.StringVar(value='15')
-values = [
-    '01',
-    '02',
-    '03',
-    '04',
-    '05',
-    '06',
-    '07',
-    '08',
-    '09',
-    '10',
-    '11',
-    '12',
-    '13',
-    '14',
-    '15',
-    '16']
-
-option_program_change_ch = tk.OptionMenu(
-    Label, program_change_ch, *values, command=select_program_change_ch)
-option_program_change_ch.place(anchor="nw", width=50, height=25, x=1200, y=5)
-
-midi_ch_label = tk.Label(Label)
-midi_ch_label.configure(anchor="w", justify="left", background=bg_info_label, foreground=fg_info_label, font=font_label,
-                        text='MIDI CH:')
-midi_ch_label.place(anchor="nw", width=70, height=25, x=1270, y=5)
-midi_ch = tk.StringVar(value='03')
-values = [
-    '01',
-    '02',
-    '03',
-    '04',
-    '05',
-    '06',
-    '07',
-    '08',
-    '09',
-    '10',
-    '11',
-    '12',
-    '13',
-    '14',
-    '15',
-    '16']
-
-option_midi_ch = tk.OptionMenu(
-    Label, midi_ch, *values, command=select_midi_ch)
-option_midi_ch.place(anchor="nw", width=50, height=25, x=1360, y=5)
 
 button2 = tk.Button(Label)
 button2.configure(justify="left", text='Load', command=load_patch)
@@ -1851,7 +1833,7 @@ frame_extra3.configure(
     background=bg_color,
     highlightbackground=hbc_color,
     highlightthickness=1,
-    width=1280)
+    width=840)
 label8 = tk.Label(frame_extra3)
 label8.configure(
     foreground=fg_label_color,
@@ -2007,6 +1989,124 @@ widget_label[87].configure(
 widget_label[87].place(anchor="nw", x=730, y=60)
 frame_extra3.place(anchor="nw", bordermode="outside", x=140, y=690)
 frame_extra3.grid_propagate(0)
+######
+frame_midi = tk.Frame(frame1)
+frame_midi.configure(
+    height=130,
+    background=bg_color,
+    highlightbackground=hbc_color,
+    highlightthickness=1,
+    width=580)
+label8 = tk.Label(frame_midi)
+label8.configure(
+    foreground=fg_label_color,
+    background=bg_label_color,
+    relief="flat",
+    state="normal",
+    text='MIDI')
+label8.place(anchor="nw", height=15)
+######
+program_change_ch_label = tk.Label(frame_midi)
+program_change_ch_label.configure(anchor="w", justify="left", background=bg_info_label, foreground=fg_info_label,
+                                  font=font_label, text='Prog. C. CH:')
+program_change_ch_label.place(anchor="nw", width=140, height=25, x=5, y=18)
+program_change_ch = tk.StringVar(value='15')
+values = [
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16']
+
+option_program_change_ch = tk.OptionMenu(
+    frame_midi, program_change_ch, *values, command=select_program_change_ch)
+option_program_change_ch.place(anchor="nw", width=50, height=25, x=140, y=18)
+
+midi_ch_label = tk.Label(frame_midi)
+midi_ch_label.configure(anchor="w", justify="left", background=bg_info_label, foreground=fg_info_label, font=font_label,
+                        text='MIDI CH:')
+midi_ch_label.place(anchor="nw", width=140, height=25, x=230, y=18)
+midi_ch = tk.StringVar(value='03')
+values = [
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16']
+
+option_midi_ch = tk.OptionMenu(
+    frame_midi, midi_ch, *values, command=select_midi_ch)
+option_midi_ch.place(anchor="nw", width=50, height=25, x=365, y=18)
+
+
+midi_in_d_label = tk.Label(frame_midi)
+midi_in_d_label.configure(anchor="w", justify="left", background=bg_info_label, foreground=fg_info_label,
+                                  font=font_label, text='MIDI IN DEV:')
+midi_in_d_label.place(anchor="nw", width=140, height=25, x=5, y=45)
+midi_in_d = tk.StringVar(value=midi_in.get_ports()[in_port])
+values = midi_in.get_ports()
+
+option_midi_in_d = tk.OptionMenu(
+    frame_midi, midi_in_d, *values, command=select_midi_in_d)
+option_midi_in_d.place(anchor="nw", width=275, height=25, x=140, y=45)
+
+midi_out_d_label = tk.Label(frame_midi)
+midi_out_d_label.configure(anchor="w", justify="left", background=bg_info_label, foreground=fg_info_label,
+                                  font=font_label, text='MIDI OUT DEV:')
+midi_out_d_label.place(anchor="nw", width=140, height=25, x=5, y=72)
+midi_out_d = tk.StringVar(value=midi_out.get_ports()[out_port])
+values = midi_out.get_ports()
+
+option_midi_out_d = tk.OptionMenu(
+    frame_midi, midi_out_d, *values, command=select_midi_out_d)
+option_midi_out_d.place(anchor="nw", width=275, height=25, x=140, y=72)
+
+midi_k_d_label = tk.Label(frame_midi)
+midi_k_d_label.configure(anchor="w", justify="left", background=bg_info_label, foreground=fg_info_label,
+                                  font=font_label, text='MIDI KEYB.:')
+midi_k_d_label.place(anchor="nw", width=140, height=25, x=5, y=99)
+if midi_k_port != None:
+    midi_k_port = midi_k_port
+else:
+    midi_k_port = 0
+midi_k_d = tk.StringVar(value=midi_in.get_ports()[midi_k_port])
+values = midi_in.get_ports()
+option_midi_k_d = tk.OptionMenu(
+    frame_midi, midi_k_d, *values, command=select_midi_k_d)
+option_midi_k_d.place(anchor="nw", width=275, height=25, x=140, y=99)
+
+
+
+
+
+frame_midi.place(anchor="nw", bordermode="outside", x=980, y=690)
+frame_midi.grid_propagate(0)
+
+
+
+
 frame1.pack(side="top")
 
 get_all_widget_value()
