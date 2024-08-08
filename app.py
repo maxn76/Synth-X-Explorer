@@ -14,53 +14,54 @@ midi_in.ignore_types(sysex=False)
 midi_k = rtmidi.MidiIn()
 available_out_ports = midi_out.get_ports()
 available_in_ports = midi_in.get_ports()
-
+available_out_ports.append("None")
+available_in_ports.append("None")
+available_k_ports = available_in_ports
 
 print(available_out_ports)
 print(available_in_ports)
 
-global m_ch
-m_ch = 2
-
-global p_c_ch
-p_c_ch = 15
-
-#in_port = ''
-for x in range(0, len(available_in_ports)):
-    if 'S-1' in available_in_ports[x]:
-        in_port = x
-        break
-
-#in_port = ''
-for x in range(0, len(available_in_ports)):
-    if 'Akai' in available_in_ports[x]:
-        midi_k_port = x
-        break
-    else:
-        midi_k_port = None
-
-#out_port = ''
-for x in range(0, len(available_out_ports)):
-    if 'S-1' in available_out_ports[x]:
-        out_port = x
-        break
 
 
-# if in_port == '' or out_port == '':
-#     exit()
-print(in_port, out_port)
-if available_out_ports:
-    midi_out.open_port(out_port)
 
-if available_in_ports:
-    midi_in.open_port(in_port)
+def save_conf():
+    with open('config.cfg', 'w') as file:
+        json.dump(conf, file)
 
-else:
-    midi_out.open_virtual_port("My virtual output")
-    midi_in.open_virtual_port("My virtual input")
 
-if midi_k_port != None:
-    midi_k.open_port(midi_k_port)
+def load_conf():
+    global conf
+    global m_ch
+    global p_c_ch
+    global midi_in_port
+    global midi_out_port
+    global midi_k_port
+    try:
+        with open('config.cfg', 'r') as file:
+            conf = json.load(file)
+        m_ch = conf['m_ch']
+        p_c_ch = conf['p_c_ch']
+        midi_in_port = conf['midi_in_port']
+        midi_out_port = conf['midi_out_port']
+        midi_k_port = conf['midi_k_port']
+
+    except:
+
+        conf = {}
+        conf["m_ch"] = 2
+        m_ch = conf["m_ch"]
+        conf["p_c_ch"] = 15
+        p_c_ch = conf["p_c_ch"]
+        conf["midi_in_port"] = len(available_in_ports) - 1
+        midi_in_port = conf["midi_in_port"]
+        conf["midi_out_port"] = len(available_out_ports) - 1
+        midi_out_port = conf["midi_out_port"]
+        conf["midi_k_port"] = len(available_k_ports) - 1
+        midi_k_port = conf["midi_k_port"]
+        save_conf()
+
+load_conf()
+
 
 
 def handle_input(event, data=None):
@@ -144,6 +145,8 @@ def select_pattern(event):
 def select_program_change_ch(event):
     global p_c_ch
     p_c_ch = int(program_change_ch.get()) - 1
+    conf["p_c_ch"] = p_c_ch
+    save_conf()
     if DEBUG:
         print('p_c_ch: ', p_c_ch)
 
@@ -151,41 +154,56 @@ def select_program_change_ch(event):
 def select_midi_ch(event):
     global m_ch
     m_ch = int(midi_ch.get()) - 1
+    conf["m_ch"] = m_ch
+    save_conf()
     if DEBUG:
         print('m_ch: ', m_ch)
 def select_midi_in_d(event):
-    if midi_in_d.get() != midi_k_d.get():
-        global in_port
-        in_port = available_in_ports.index(midi_in_d.get())
+    try:
+        midi_in_port = midi_in_d.get()
+        midi_in_port = available_in_ports.index(midi_in_port)
         midi_in.close_port()
-        midi_in.open_port(in_port)
+        midi_in.open_port(midi_in_port)
+        midi_in_d.set(available_in_ports[midi_in_port])
         midi_in_message()
+        conf["midi_in_port"] = midi_in_port
+        save_conf()
 
-    else:
-        midi_in_d.set(available_in_ports[in_port])
-        if DEBUG:
-            print('port', port, "already in use!")
+    except:
+        midi_in_d.set(available_in_ports[available_in_ports.index('None')])
+        conf["midi_in_port"] = available_in_ports.index('None')
+        save_conf()
 
 
 def select_midi_out_d(event):
-        global out_port
-        out_port = available_out_ports.index(midi_out_d.get())
+    try:
+        midi_out_port = midi_out_d.get()
+        midi_out_port = available_out_ports.index(midi_out_port)
         midi_out.close_port()
-        midi_out.open_port(out_port)
-
+        midi_out.open_port(midi_out_port)
+        midi_out_d.set(available_out_ports[midi_out_port])
+        conf["midi_out_port"] = midi_out_port
+        save_conf()
+    except:
+        midi_out_d.set(available_out_ports[available_out_ports.index('None')])
+        conf["midi_out_port"] = available_out_ports.index('None')
+        save_conf()
 
 def select_midi_k_d(event):
-    if midi_in_d.get() != midi_k_d.get():
-        global midi_k_port
-        midi_k_port = available_in_ports.index(midi_k_d.get())
+    try:
+        midi_k_port = midi_k_d.get()
+        midi_k_port = available_k_ports.index(midi_k_port)
         midi_k.close_port()
         midi_k.open_port(midi_k_port)
+        midi_k_d.set(available_k_ports[midi_k_port])
         midi_k_message()
+        conf["midi_k_port"] = midi_k_port
+        save_conf()
+    except:
+        midi_k_d.set(available_k_ports[available_k_ports.index('None')])
+        conf["midi_k_port"] = available_k_ports.index('None')
+        save_conf()
 
-    else:
-        midi_k_d.set(available_in_ports[midi_k_port])
-        if DEBUG:
-            print('port', port, "already in use!")
 
 def update_value(event):
     w = event.widget
@@ -2065,8 +2083,8 @@ midi_in_d_label = tk.Label(frame_midi)
 midi_in_d_label.configure(anchor="w", justify="left", background=bg_info_label, foreground=fg_info_label,
                                   font=font_label, text='MIDI IN DEV:')
 midi_in_d_label.place(anchor="nw", width=140, height=25, x=5, y=45)
-midi_in_d = tk.StringVar(value=midi_in.get_ports()[in_port])
-values = midi_in.get_ports()
+midi_in_d = tk.StringVar(value=available_in_ports[int(midi_in_port)])
+values = available_in_ports
 
 option_midi_in_d = tk.OptionMenu(
     frame_midi, midi_in_d, *values, command=select_midi_in_d)
@@ -2076,8 +2094,8 @@ midi_out_d_label = tk.Label(frame_midi)
 midi_out_d_label.configure(anchor="w", justify="left", background=bg_info_label, foreground=fg_info_label,
                                   font=font_label, text='MIDI OUT DEV:')
 midi_out_d_label.place(anchor="nw", width=140, height=25, x=5, y=72)
-midi_out_d = tk.StringVar(value=midi_out.get_ports()[out_port])
-values = midi_out.get_ports()
+midi_out_d = tk.StringVar(value=available_out_ports[int(midi_out_port)])
+values = available_out_ports
 
 option_midi_out_d = tk.OptionMenu(
     frame_midi, midi_out_d, *values, command=select_midi_out_d)
@@ -2087,12 +2105,8 @@ midi_k_d_label = tk.Label(frame_midi)
 midi_k_d_label.configure(anchor="w", justify="left", background=bg_info_label, foreground=fg_info_label,
                                   font=font_label, text='MIDI KEYB.:')
 midi_k_d_label.place(anchor="nw", width=140, height=25, x=5, y=99)
-if midi_k_port != None:
-    midi_k_port = midi_k_port
-else:
-    midi_k_port = 0
-midi_k_d = tk.StringVar(value=midi_in.get_ports()[midi_k_port])
-values = midi_in.get_ports()
+midi_k_d = tk.StringVar(value=available_k_ports[int(midi_k_port)])
+values = available_k_ports
 option_midi_k_d = tk.OptionMenu(
     frame_midi, midi_k_d, *values, command=select_midi_k_d)
 option_midi_k_d.place(anchor="nw", width=275, height=25, x=140, y=99)
