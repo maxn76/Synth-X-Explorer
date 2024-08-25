@@ -6,7 +6,7 @@ from tkinter import filedialog as open_file
 from tkinter.filedialog import asksaveasfile as save_as
 import json
 
-DEBUG = False
+DEBUG = True
 
 midi_out = rtmidi.MidiOut()
 midi_in = rtmidi.MidiIn()
@@ -61,7 +61,9 @@ def load_conf():
         save_conf()
 
 load_conf()
-
+midi_in.open_port(midi_in_port)
+midi_out.open_port(midi_out_port)
+midi_k.open_port(midi_k_port)
 
 
 def handle_input(event, data=None):
