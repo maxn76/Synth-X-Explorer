@@ -61,10 +61,14 @@ def load_conf():
         save_conf()
 
 load_conf()
-midi_in.open_port(midi_in_port)
-midi_out.open_port(midi_out_port)
-midi_k.open_port(midi_k_port)
 
+try:
+    midi_in.open_port(midi_in_port)
+    midi_out.open_port(midi_out_port)
+    midi_k.open_port(midi_k_port)
+except:
+    print('Open Midi ports failed')
+m_k_ch = 13
 
 def handle_input(event, data=None):
     message, deltatime = event
@@ -93,9 +97,22 @@ def handle_midi_k_input(event, data=None):
     cc = int(message[0])
     com = int(message[1])
     value = message[2]
+    if DEBUG:
+        print('cc', cc, 'com', com, 'value', value)
 
+    midi_out.send_message([cc + m_ch, com, value])
+    if cc == 176:
+        index_name = int(w_com.index(com))
+        widget[index_name].set(value)
+        try:
+            widget_label[com]['text'] = extra_data[com][value]
+        except:
+            widget_label[com]['text'] = value
 
-    midi_out.send_message([0x90 + m_ch, com, value])
+        if extra_data[com] != '':
+            cmd_label['text'] = w_name[index_name] + ': ' + str(extra_data[com][value])
+        else:
+            cmd_label['text'] = w_name[index_name] + ': ' + str(value)
 
 def midi_in_message():
     midi_in.set_callback(handle_input)
