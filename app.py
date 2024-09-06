@@ -441,183 +441,183 @@ def read_step_motion(file):
 
     return step_motion
 
-with open('TEST.PRM', 'r') as file:
-    LENG = int(read_var(file,'LENG') / 2)
-    SCALE = int(read_var(file, 'SCALE') / 2)
-    TRANSPOSE = int(read_var(file, 'TRANSPOSE') / 2)
-    LEVEL = int(read_var(file, 'LEVEL') / 2)
-    TEMPO = int(read_var(file, 'TEMPO') / 2)
-    SHUFFLE = int(read_var(file, 'SHUFFLE') / 2)
-    ARP_TYPE = int(read_var(file, 'ARP_TYPE') / 2)
-    ARP_RATE = int(read_var(file, 'ARP_RATE') / 2)
-    MOTION_CC1 = int(read_var(file, 'MOTION_CC1') / 2)
-    MOTION_CC2 = int(read_var(file, 'MOTION_CC2') / 2)
-    MOTION_CC3 = int(read_var(file, 'MOTION_CC3') / 2)
-    MOTION_CC4 = int(read_var(file, 'MOTION_CC4') / 2)
-    MOTION_CC5 = int(read_var(file, 'MOTION_CC5') / 2)
-    MOTION_CC6 = int(read_var(file, 'MOTION_CC6') / 2)
-    MOTION_CC7 = int(read_var(file, 'MOTION_CC7') / 2)
-    MOTION_CC8 = int(read_var(file, 'MOTION_CC8') / 2)
-    LFO_RATE = int(read_var(file, 'LFO_RATE') / 2)
-    LFO_WAVE_FORM = int(read_var(file, 'LFO_WAVE_FORM') / 2)
-    VCO_MOD_DEPTH = int(read_var(file, 'VCO_MOD_DEPTH') / 2)
-    VCO_RANGE = int(read_var(file, 'VCO_RANGE') / 2)
-    VCO_PULSE_WIDTH = int(read_var(file, 'VCO_PULSE_WIDTH') / 2)
-    VCO_PWM_SOURCE = int(read_var(file, 'VCO_PWM_SOURCE') / 2)
-    VCO_PWM_LEVEL = int(read_var(file, 'VCO_PWM_LEVEL') / 2)
-    VCO_SAW_LEVEL = int(read_var(file, 'VCO_SAW_LEVEL') / 2)
-    VCO_SUB_LEVEL = int(read_var(file, 'VCO_SUB_LEVEL') / 2)
-    VCO_SUB_TYPE = int(read_var(file, 'VCO_SUB_TYPE') / 2)
-    VCO_NOISE_LEVEL = int(read_var(file, 'VCO_NOISE_LEVEL') / 2)
-    VCF_CUTOFF = int(read_var(file, 'VCF_CUTOFF') / 2)
-    VCF_RESONANCE = int(read_var(file, 'VCF_RESONANCE') / 2)
-    VCF_ENV_DEPTH = int(read_var(file, 'VCF_ENV_DEPTH') / 2)
-    VCF_MOD_DEPTH = int(read_var(file, 'VCF_MOD_DEPTH') / 2)
-    VCF_KEY_FOLLOW = int(read_var(file, 'VCF_KEY_FOLLOW') / 2)
-    VCA_ENV_MODE = int(read_var(file, 'VCA_ENV_MODE') / 2)
-    ENV_TRG_MODE = int(read_var(file, 'ENV_TRG_MODE') / 2)
-    ENV_ATTACK = int(read_var(file, 'ENV_ATTACK') / 2)
-    ENV_DECAY = int(read_var(file, 'ENV_DECAY') / 2)
-    ENV_SUSTAIN = int(read_var(file, 'ENV_SUSTAIN') / 2)
-    ENV_RELEASE = int(read_var(file, 'ENV_RELEASE') / 2)
-    ASSIGN_MODE = int(read_var(file, 'ASSIGN_MODE') / 2)
-    CHORD_VOICE2_SW = int(read_var(file, 'CHORD_VOICE2_SW') / 2)
-    CHORD_VOICE3_SW = int(read_var(file, 'CHORD_VOICE3_SW') / 2)
-    CHORD_VOICE4_SW = int(read_var(file, 'CHORD_VOICE4_SW') / 2)
-    CHORD_VOICE2_KEY_SHIFT = int(read_var(file, 'CHORD_VOICE2_KEY_SHIFT') / 2)
-    CHORD_VOICE3_KEY_SHIFT = int(read_var(file, 'CHORD_VOICE3_KEY_SHIFT') / 2)
-    CHORD_VOICE4_KEY_SHIFT = int(read_var(file, 'CHORD_VOICE4_KEY_SHIFT') / 2)
-    VCO_BEND_SENS = int(read_var(file, 'VCO_BEND_SENS') / 2)
-    VCF_BEND_SENS = int(read_var(file, 'VCF_BEND_SENS') / 2)
-    LFO_MOD_DEPTH = int(read_var(file, 'LFO_MOD_DEPTH') / 2)
-    PORTAMENTO_MODE = int(read_var(file, 'PORTAMENTO_MODE') / 2)
-    PORTAMENTO_TIME = int(read_var(file, 'PORTAMENTO_TIME') / 2)
-    NOISE_MODE = int(read_var(file, 'NOISE_MODE') / 2)
-    LFO_MODE = int(read_var(file, 'LFO_MODE') / 2)
-    FINE_TUNE = int(read_var(file, 'FINE_TUNE') / 2)
-    TEMPO_SYNC = int(read_var(file, 'TEMPO_SYNC') / 2)
-    CHORUS = int(read_var(file, 'CHORUS') / 2)
-    DELAY_LEVEL = int(read_var(file, 'DELAY_LEVEL') / 2)
-    DELAY_TIME = int(read_var(file, 'DELAY_TIME') / 2)
-    DELAY_TEMPO = int(read_var(file, 'DELAY_TEMPO') / 2)
-    DELAY_FEEDBACK = int(read_var(file, 'DELAY_FEEDBACK') / 2)
-    DELAY_LOW_CUT = int(read_var(file, 'DELAY_LOW_CUT') / 2)
-    DELAY_HIGH_CUT = int(read_var(file, 'DELAY_HIGH_CUT') / 2)
-    DELAY_SW = int(read_var(file, 'DELAY_SW') / 2)
-    REVERB_TYPE = int(read_var(file, 'REVERB_TYPE') / 2)
-    REVERB_TIME = int(read_var(file, 'REVERB_TIME') / 2)
-    REVERB_LEVEL = int(read_var(file, 'REVERB_LEVEL') / 2)
-    REVERB_PRE_DELAY = int(read_var(file, 'REVERB_PRE_DELAY') / 2)
-    REVERB_LOW_CUT = int(read_var(file, 'REVERB_LOW_CUT') / 2)
-    REVERB_HIGH_CUT = int(read_var(file, 'REVERB_HIGH_CUT') / 2)
-    REVERB_DENSITY = int(read_var(file, 'REVERB_DENSITY') / 2)
-    OSC_DRAW_SW = int(read_var(file, 'OSC_DRAW_SW') / 2)
-    OSC_DRAW_MULT = int(read_var(file, 'OSC_DRAW_MULT') / 2)
-    OSC_DRAW_P1 = int(read_var(file, 'OSC_DRAW_P1') / 2)
-    OSC_DRAW_P2 = int(read_var(file, 'OSC_DRAW_P2') / 2)
-    OSC_DRAW_P3 = int(read_var(file, 'OSC_DRAW_P3') / 2)
-    OSC_DRAW_P4 = int(read_var(file, 'OSC_DRAW_P4') / 2)
-    OSC_DRAW_P5 = int(read_var(file, 'OSC_DRAW_P5') / 2)
-    OSC_DRAW_P6 = int(read_var(file, 'OSC_DRAW_P6') / 2)
-    OSC_DRAW_P7 = int(read_var(file, 'OSC_DRAW_P7') / 2)
-    OSC_DRAW_P8 = int(read_var(file, 'OSC_DRAW_P8') / 2)
-    OSC_CHOP_TYPE = int(read_var(file, 'OSC_CHOP_TYPE') / 2)
-    OSC_CHOP_OVERTONE = int(read_var(file, 'OSC_CHOP_OVERTONE') / 2)
-    OSC_CHOP_COMB_TYPE = int(read_var(file, 'OSC_CHOP_COMB_TYPE') / 2)
-    OSC_CHOP_COMB = int(read_var(file, 'OSC_CHOP_COMB') / 2)
-    OSC_CHOP_PWM = int(read_var(file, 'OSC_CHOP_PWM') / 2)
-    OSC_CHOP_SAW = int(read_var(file, 'OSC_CHOP_SAW') / 2)
-    OSC_CHOP_SUB = int(read_var(file, 'OSC_CHOP_SUB') / 2)
-    OSC_CHOP_NOISE = int(read_var(file, 'OSC_CHOP_NOISE') / 2)
-    RISER_MODE = int(read_var(file, 'RISER_MODE') / 2)
-    RISER_SW = int(read_var(file, 'RISER_SW') / 2)
-    RISER_CTRL = int(read_var(file, 'RISER_CTRL') / 2)
-    RISER_BEAT = int(read_var(file, 'RISER_BEAT') / 2)
-    RISER_RESO = int(read_var(file, 'RISER_RESO') / 2)
-    RISER_LEVEL = int(read_var(file, 'RISER_LEVEL') / 2)
-    DM_ASSIGN_X = int(read_var(file, 'DM_ASSIGN_X') / 2)
-    DM_ASSIGN_Y = int(read_var(file, 'DM_ASSIGN_Y') / 2)
-    DM_ASSIGN_TAP = int(read_var(file, 'DM_ASSIGN_TAP') / 2)
-    DM_ASSIGN_FF = int(read_var(file, 'DM_ASSIGN_FF') / 2)
-    DM_SENS_X = int(read_var(file, 'DM_SENS_X') / 2)
-    DM_SENS_Y = int(read_var(file, 'DM_SENS_Y') / 2)
-    LFO_KEY_TRIG = int(read_var(file, 'LFO_KEY_TRIG') / 2)
-    LFO_SYNC = int(read_var(file, 'LFO_SYNC') / 2)
-    RISER_SHAPE = int(read_var(file, 'RISER_SHAPE') / 2)
-    PRM1 = int(read_var(file, 'PRM1') / 2)
-    PRM2 = int(read_var(file, 'PRM2') / 2)
-    PRM3 = int(read_var(file, 'PRM3') / 2)
-    PRM4 = int(read_var(file, 'PRM4') / 2)
-    PRM5 = int(read_var(file, 'PRM5') / 2)
-    PRM6 = int(read_var(file, 'PRM6') / 2)
-    PRM7 = int(read_var(file, 'PRM7') / 2)
-    PRM8 = int(read_var(file, 'PRM8') / 2)
-    PRM9 = int(read_var(file, 'PRM9') / 2)
-    PRM10 = int(read_var(file, 'PRM10') / 2)
-    PRM11 = int(read_var(file, 'PRM11') / 2)
-
-
-    control1 = [["27.FILT BEND S", 27, VCF_BEND_SENS, 0, 0],
-               ["28.AMP ENV M", 28, VCA_ENV_MODE, 0, 0],
-               ["29.ENV TR MODE", 29, ENV_TRG_MODE, 0, 0],
-               ["26.FILT_KEYB_F", 26, 0, 0, 0],
-               ["92.DELAY LEVEL", 92, DELAY_LEVEL, 0, 0],
-               ["90.DELAY TIME", 90, DELAY_TIME, 0, 0],
-               ["91.REVERB LEVEL", 91, REVERB_LEVEL, 0, 0],
-               ["89.REVERB TIME", 89, REVERB_TIME, 0, 0],
-               ["93.CHORUS", 93, CHORUS, 0, 0],
-               ["1.MOD WHEEL", 1, 0, 0, 0],
-               ["65.PORTAM", 65, 0, 0, 0],
-               ["10.PAN", 10, 63, 0, 0],
-               ["11.EXP PEDAL", 11, 127, 0, 0],
-               ["64.DAMP P", 64, 0, 0, 0],
-               ["74.FREQ", 74, VCF_CUTOFF, 0, 0],
-               ["71.RESON", 71, VCF_RESONANCE, 0, 0],
-               ["25.LFO", 25, VCF_MOD_DEPTH, 0, 0],
-               ["24.ENVELOPE", 24, VCF_ENV_DEPTH, 0, 0],
-               ["26.FILT KEYB F", 26, VCF_KEY_FOLLOW, 0, 0],
-               ["3.LFO RATE", 3, LFO_RATE, 0, 0],
-               ["12.WAVE FORM", 12, LFO_WAVE_FORM, 0, 0],
-               ["79.LFO MODE", 79, LFO_MODE, 0, 0],
-               ["106.LFO SYNC", 106, LFO_SYNC, 0, 0],
-               ["14.OSC RANGE", 14, VCO_RANGE, 0, 0],
-               ["13.OSC LFO", 13, VCO_MOD_DEPTH, 0, 0],
-               ["76.FINE TUNE", 76, FINE_TUNE, 0, 0],
-               ["103.OSC CHOP", 103, OSC_CHOP_OVERTONE, 0, 0],
-               ["19.SQUARE W L", 19, VCO_PWM_LEVEL, 0, 0],
-               ["20.SAWT W L", 20, VCO_SAW_LEVEL, 0, 0],
-               ["15.OSC PWIDTH", 15, VCO_PULSE_WIDTH, 0, 0],
-               ["107.OSC DW SW", 107, OSC_DRAW_SW, 0, 0],
-               ["102.OSC DRAW M", 102, OSC_DRAW_MULT, 0, 0],
-               ["23.OSC NOISE L", 23, VCO_NOISE_LEVEL, 0, 0],
-               ["78.NOISE MODE", 78, NOISE_MODE, 0, 0],
-               ["21.OSC S-LEVEL", 21, VCO_SUB_LEVEL, 0, 0],
-               ["104.OSC CHOP C", 104, OSC_CHOP_COMB, 0, 0],
-               ["73.ATTACK", 73, ENV_ATTACK, 0, 0],
-               ["75.DECAY", 75, ENV_DECAY, 0, 0],
-               ["30.SUSTAIN", 30, ENV_SUSTAIN, 0, 0],
-               ["72.RELEASE", 72, ENV_RELEASE, 0, 0],
-               ["16.OSC PWM S ", 16, VCO_PWM_SOURCE, 0, 0],
-               ["17.LFO MOD D", 17, LFO_MOD_DEPTH, 0, 0],
-               ["18.OSC BEND S", 18, VCO_BEND_SENS, 0, 0],
-               ["22.OSC S-TYPE", 22, VCO_SUB_TYPE, 0, 0],
-               ["80.POLY MODE", 80, 2, 0, 0],
-               ["31.PORT MODE", 31, PORTAMENTO_MODE, 0, 0],
-               ["5.PORT TIME", 5, PORTAMENTO_TIME, 0, 0],
-               ["105.LFO KEY T", 105, LFO_KEY_TRIG, 0, 0],
-               ["77.TRANSP SW", 77, TRANSPOSE, 0, 0],
-               ["81.CHORD V2 SW", 81, CHORD_VOICE2_SW, 0, 0],
-               ["82.CHORD V3 SW", 82, CHORD_VOICE3_SW, 0, 0],
-               ["83.CHORD V4 SW", 83, CHORD_VOICE4_SW, 0, 0],
-               ["85.CHORD V2 KS", 85, CHORD_VOICE2_KEY_SHIFT, 0, 0],
-               ["86.CHORD V3 KS", 86, CHORD_VOICE3_KEY_SHIFT, 0, 0],
-               ["87.CHORD V4 KS", 87, CHORD_VOICE4_KEY_SHIFT, 0, 0]]
-
-with open('TEST.PRM', 'r') as file:
-    STEP_NOTE = read_step_note(file)
-
-with open('TEST.PRM', 'r') as file:
-    STEP_MOTION = read_step_motion(file)
+# with open('TEST.PRM', 'r') as file:
+#     LENG = int(read_var(file,'LENG') / 2)
+#     SCALE = int(read_var(file, 'SCALE') / 2)
+#     TRANSPOSE = int(read_var(file, 'TRANSPOSE') / 2)
+#     LEVEL = int(read_var(file, 'LEVEL') / 2)
+#     TEMPO = int(read_var(file, 'TEMPO') / 2)
+#     SHUFFLE = int(read_var(file, 'SHUFFLE') / 2)
+#     ARP_TYPE = int(read_var(file, 'ARP_TYPE') / 2)
+#     ARP_RATE = int(read_var(file, 'ARP_RATE') / 2)
+#     MOTION_CC1 = int(read_var(file, 'MOTION_CC1') / 2)
+#     MOTION_CC2 = int(read_var(file, 'MOTION_CC2') / 2)
+#     MOTION_CC3 = int(read_var(file, 'MOTION_CC3') / 2)
+#     MOTION_CC4 = int(read_var(file, 'MOTION_CC4') / 2)
+#     MOTION_CC5 = int(read_var(file, 'MOTION_CC5') / 2)
+#     MOTION_CC6 = int(read_var(file, 'MOTION_CC6') / 2)
+#     MOTION_CC7 = int(read_var(file, 'MOTION_CC7') / 2)
+#     MOTION_CC8 = int(read_var(file, 'MOTION_CC8') / 2)
+#     LFO_RATE = int(read_var(file, 'LFO_RATE') / 2)
+#     LFO_WAVE_FORM = int(read_var(file, 'LFO_WAVE_FORM') / 2)
+#     VCO_MOD_DEPTH = int(read_var(file, 'VCO_MOD_DEPTH') / 2)
+#     VCO_RANGE = int(read_var(file, 'VCO_RANGE') / 2)
+#     VCO_PULSE_WIDTH = int(read_var(file, 'VCO_PULSE_WIDTH') / 2)
+#     VCO_PWM_SOURCE = int(read_var(file, 'VCO_PWM_SOURCE') / 2)
+#     VCO_PWM_LEVEL = int(read_var(file, 'VCO_PWM_LEVEL') / 2)
+#     VCO_SAW_LEVEL = int(read_var(file, 'VCO_SAW_LEVEL') / 2)
+#     VCO_SUB_LEVEL = int(read_var(file, 'VCO_SUB_LEVEL') / 2)
+#     VCO_SUB_TYPE = int(read_var(file, 'VCO_SUB_TYPE') / 2)
+#     VCO_NOISE_LEVEL = int(read_var(file, 'VCO_NOISE_LEVEL') / 2)
+#     VCF_CUTOFF = int(read_var(file, 'VCF_CUTOFF') / 2)
+#     VCF_RESONANCE = int(read_var(file, 'VCF_RESONANCE') / 2)
+#     VCF_ENV_DEPTH = int(read_var(file, 'VCF_ENV_DEPTH') / 2)
+#     VCF_MOD_DEPTH = int(read_var(file, 'VCF_MOD_DEPTH') / 2)
+#     VCF_KEY_FOLLOW = int(read_var(file, 'VCF_KEY_FOLLOW') / 2)
+#     VCA_ENV_MODE = int(read_var(file, 'VCA_ENV_MODE') / 2)
+#     ENV_TRG_MODE = int(read_var(file, 'ENV_TRG_MODE') / 2)
+#     ENV_ATTACK = int(read_var(file, 'ENV_ATTACK') / 2)
+#     ENV_DECAY = int(read_var(file, 'ENV_DECAY') / 2)
+#     ENV_SUSTAIN = int(read_var(file, 'ENV_SUSTAIN') / 2)
+#     ENV_RELEASE = int(read_var(file, 'ENV_RELEASE') / 2)
+#     ASSIGN_MODE = int(read_var(file, 'ASSIGN_MODE') / 2)
+#     CHORD_VOICE2_SW = int(read_var(file, 'CHORD_VOICE2_SW') / 2)
+#     CHORD_VOICE3_SW = int(read_var(file, 'CHORD_VOICE3_SW') / 2)
+#     CHORD_VOICE4_SW = int(read_var(file, 'CHORD_VOICE4_SW') / 2)
+#     CHORD_VOICE2_KEY_SHIFT = int(read_var(file, 'CHORD_VOICE2_KEY_SHIFT') / 2)
+#     CHORD_VOICE3_KEY_SHIFT = int(read_var(file, 'CHORD_VOICE3_KEY_SHIFT') / 2)
+#     CHORD_VOICE4_KEY_SHIFT = int(read_var(file, 'CHORD_VOICE4_KEY_SHIFT') / 2)
+#     VCO_BEND_SENS = int(read_var(file, 'VCO_BEND_SENS') / 2)
+#     VCF_BEND_SENS = int(read_var(file, 'VCF_BEND_SENS') / 2)
+#     LFO_MOD_DEPTH = int(read_var(file, 'LFO_MOD_DEPTH') / 2)
+#     PORTAMENTO_MODE = int(read_var(file, 'PORTAMENTO_MODE') / 2)
+#     PORTAMENTO_TIME = int(read_var(file, 'PORTAMENTO_TIME') / 2)
+#     NOISE_MODE = int(read_var(file, 'NOISE_MODE') / 2)
+#     LFO_MODE = int(read_var(file, 'LFO_MODE') / 2)
+#     FINE_TUNE = int(read_var(file, 'FINE_TUNE') / 2)
+#     TEMPO_SYNC = int(read_var(file, 'TEMPO_SYNC') / 2)
+#     CHORUS = int(read_var(file, 'CHORUS') / 2)
+#     DELAY_LEVEL = int(read_var(file, 'DELAY_LEVEL') / 2)
+#     DELAY_TIME = int(read_var(file, 'DELAY_TIME') / 2)
+#     DELAY_TEMPO = int(read_var(file, 'DELAY_TEMPO') / 2)
+#     DELAY_FEEDBACK = int(read_var(file, 'DELAY_FEEDBACK') / 2)
+#     DELAY_LOW_CUT = int(read_var(file, 'DELAY_LOW_CUT') / 2)
+#     DELAY_HIGH_CUT = int(read_var(file, 'DELAY_HIGH_CUT') / 2)
+#     DELAY_SW = int(read_var(file, 'DELAY_SW') / 2)
+#     REVERB_TYPE = int(read_var(file, 'REVERB_TYPE') / 2)
+#     REVERB_TIME = int(read_var(file, 'REVERB_TIME') / 2)
+#     REVERB_LEVEL = int(read_var(file, 'REVERB_LEVEL') / 2)
+#     REVERB_PRE_DELAY = int(read_var(file, 'REVERB_PRE_DELAY') / 2)
+#     REVERB_LOW_CUT = int(read_var(file, 'REVERB_LOW_CUT') / 2)
+#     REVERB_HIGH_CUT = int(read_var(file, 'REVERB_HIGH_CUT') / 2)
+#     REVERB_DENSITY = int(read_var(file, 'REVERB_DENSITY') / 2)
+#     OSC_DRAW_SW = int(read_var(file, 'OSC_DRAW_SW') / 2)
+#     OSC_DRAW_MULT = int(read_var(file, 'OSC_DRAW_MULT') / 2)
+#     OSC_DRAW_P1 = int(read_var(file, 'OSC_DRAW_P1') / 2)
+#     OSC_DRAW_P2 = int(read_var(file, 'OSC_DRAW_P2') / 2)
+#     OSC_DRAW_P3 = int(read_var(file, 'OSC_DRAW_P3') / 2)
+#     OSC_DRAW_P4 = int(read_var(file, 'OSC_DRAW_P4') / 2)
+#     OSC_DRAW_P5 = int(read_var(file, 'OSC_DRAW_P5') / 2)
+#     OSC_DRAW_P6 = int(read_var(file, 'OSC_DRAW_P6') / 2)
+#     OSC_DRAW_P7 = int(read_var(file, 'OSC_DRAW_P7') / 2)
+#     OSC_DRAW_P8 = int(read_var(file, 'OSC_DRAW_P8') / 2)
+#     OSC_CHOP_TYPE = int(read_var(file, 'OSC_CHOP_TYPE') / 2)
+#     OSC_CHOP_OVERTONE = int(read_var(file, 'OSC_CHOP_OVERTONE') / 2)
+#     OSC_CHOP_COMB_TYPE = int(read_var(file, 'OSC_CHOP_COMB_TYPE') / 2)
+#     OSC_CHOP_COMB = int(read_var(file, 'OSC_CHOP_COMB') / 2)
+#     OSC_CHOP_PWM = int(read_var(file, 'OSC_CHOP_PWM') / 2)
+#     OSC_CHOP_SAW = int(read_var(file, 'OSC_CHOP_SAW') / 2)
+#     OSC_CHOP_SUB = int(read_var(file, 'OSC_CHOP_SUB') / 2)
+#     OSC_CHOP_NOISE = int(read_var(file, 'OSC_CHOP_NOISE') / 2)
+#     RISER_MODE = int(read_var(file, 'RISER_MODE') / 2)
+#     RISER_SW = int(read_var(file, 'RISER_SW') / 2)
+#     RISER_CTRL = int(read_var(file, 'RISER_CTRL') / 2)
+#     RISER_BEAT = int(read_var(file, 'RISER_BEAT') / 2)
+#     RISER_RESO = int(read_var(file, 'RISER_RESO') / 2)
+#     RISER_LEVEL = int(read_var(file, 'RISER_LEVEL') / 2)
+#     DM_ASSIGN_X = int(read_var(file, 'DM_ASSIGN_X') / 2)
+#     DM_ASSIGN_Y = int(read_var(file, 'DM_ASSIGN_Y') / 2)
+#     DM_ASSIGN_TAP = int(read_var(file, 'DM_ASSIGN_TAP') / 2)
+#     DM_ASSIGN_FF = int(read_var(file, 'DM_ASSIGN_FF') / 2)
+#     DM_SENS_X = int(read_var(file, 'DM_SENS_X') / 2)
+#     DM_SENS_Y = int(read_var(file, 'DM_SENS_Y') / 2)
+#     LFO_KEY_TRIG = int(read_var(file, 'LFO_KEY_TRIG') / 2)
+#     LFO_SYNC = int(read_var(file, 'LFO_SYNC') / 2)
+#     RISER_SHAPE = int(read_var(file, 'RISER_SHAPE') / 2)
+#     PRM1 = int(read_var(file, 'PRM1') / 2)
+#     PRM2 = int(read_var(file, 'PRM2') / 2)
+#     PRM3 = int(read_var(file, 'PRM3') / 2)
+#     PRM4 = int(read_var(file, 'PRM4') / 2)
+#     PRM5 = int(read_var(file, 'PRM5') / 2)
+#     PRM6 = int(read_var(file, 'PRM6') / 2)
+#     PRM7 = int(read_var(file, 'PRM7') / 2)
+#     PRM8 = int(read_var(file, 'PRM8') / 2)
+#     PRM9 = int(read_var(file, 'PRM9') / 2)
+#     PRM10 = int(read_var(file, 'PRM10') / 2)
+#     PRM11 = int(read_var(file, 'PRM11') / 2)
+#
+#
+#     control1 = [["27.FILT BEND S", 27, VCF_BEND_SENS, 0, 0],
+#                ["28.AMP ENV M", 28, VCA_ENV_MODE, 0, 0],
+#                ["29.ENV TR MODE", 29, ENV_TRG_MODE, 0, 0],
+#                ["26.FILT_KEYB_F", 26, 0, 0, 0],
+#                ["92.DELAY LEVEL", 92, DELAY_LEVEL, 0, 0],
+#                ["90.DELAY TIME", 90, DELAY_TIME, 0, 0],
+#                ["91.REVERB LEVEL", 91, REVERB_LEVEL, 0, 0],
+#                ["89.REVERB TIME", 89, REVERB_TIME, 0, 0],
+#                ["93.CHORUS", 93, CHORUS, 0, 0],
+#                ["1.MOD WHEEL", 1, 0, 0, 0],
+#                ["65.PORTAM", 65, 0, 0, 0],
+#                ["10.PAN", 10, 63, 0, 0],
+#                ["11.EXP PEDAL", 11, 127, 0, 0],
+#                ["64.DAMP P", 64, 0, 0, 0],
+#                ["74.FREQ", 74, VCF_CUTOFF, 0, 0],
+#                ["71.RESON", 71, VCF_RESONANCE, 0, 0],
+#                ["25.LFO", 25, VCF_MOD_DEPTH, 0, 0],
+#                ["24.ENVELOPE", 24, VCF_ENV_DEPTH, 0, 0],
+#                ["26.FILT KEYB F", 26, VCF_KEY_FOLLOW, 0, 0],
+#                ["3.LFO RATE", 3, LFO_RATE, 0, 0],
+#                ["12.WAVE FORM", 12, LFO_WAVE_FORM, 0, 0],
+#                ["79.LFO MODE", 79, LFO_MODE, 0, 0],
+#                ["106.LFO SYNC", 106, LFO_SYNC, 0, 0],
+#                ["14.OSC RANGE", 14, VCO_RANGE, 0, 0],
+#                ["13.OSC LFO", 13, VCO_MOD_DEPTH, 0, 0],
+#                ["76.FINE TUNE", 76, FINE_TUNE, 0, 0],
+#                ["103.OSC CHOP", 103, OSC_CHOP_OVERTONE, 0, 0],
+#                ["19.SQUARE W L", 19, VCO_PWM_LEVEL, 0, 0],
+#                ["20.SAWT W L", 20, VCO_SAW_LEVEL, 0, 0],
+#                ["15.OSC PWIDTH", 15, VCO_PULSE_WIDTH, 0, 0],
+#                ["107.OSC DW SW", 107, OSC_DRAW_SW, 0, 0],
+#                ["102.OSC DRAW M", 102, OSC_DRAW_MULT, 0, 0],
+#                ["23.OSC NOISE L", 23, VCO_NOISE_LEVEL, 0, 0],
+#                ["78.NOISE MODE", 78, NOISE_MODE, 0, 0],
+#                ["21.OSC S-LEVEL", 21, VCO_SUB_LEVEL, 0, 0],
+#                ["104.OSC CHOP C", 104, OSC_CHOP_COMB, 0, 0],
+#                ["73.ATTACK", 73, ENV_ATTACK, 0, 0],
+#                ["75.DECAY", 75, ENV_DECAY, 0, 0],
+#                ["30.SUSTAIN", 30, ENV_SUSTAIN, 0, 0],
+#                ["72.RELEASE", 72, ENV_RELEASE, 0, 0],
+#                ["16.OSC PWM S ", 16, VCO_PWM_SOURCE, 0, 0],
+#                ["17.LFO MOD D", 17, LFO_MOD_DEPTH, 0, 0],
+#                ["18.OSC BEND S", 18, VCO_BEND_SENS, 0, 0],
+#                ["22.OSC S-TYPE", 22, VCO_SUB_TYPE, 0, 0],
+#                ["80.POLY MODE", 80, 2, 0, 0],
+#                ["31.PORT MODE", 31, PORTAMENTO_MODE, 0, 0],
+#                ["5.PORT TIME", 5, PORTAMENTO_TIME, 0, 0],
+#                ["105.LFO KEY T", 105, LFO_KEY_TRIG, 0, 0],
+#                ["77.TRANSP SW", 77, TRANSPOSE, 0, 0],
+#                ["81.CHORD V2 SW", 81, CHORD_VOICE2_SW, 0, 0],
+#                ["82.CHORD V3 SW", 82, CHORD_VOICE3_SW, 0, 0],
+#                ["83.CHORD V4 SW", 83, CHORD_VOICE4_SW, 0, 0],
+#                ["85.CHORD V2 KS", 85, CHORD_VOICE2_KEY_SHIFT, 0, 0],
+#                ["86.CHORD V3 KS", 86, CHORD_VOICE3_KEY_SHIFT, 0, 0],
+#                ["87.CHORD V4 KS", 87, CHORD_VOICE4_KEY_SHIFT, 0, 0]]
+#
+# with open('TEST.PRM', 'r') as file:
+#     STEP_NOTE = read_step_note(file)
+#
+# with open('TEST.PRM', 'r') as file:
+#     STEP_MOTION = read_step_motion(file)
 def load_default():
     global control
     global filehandle
