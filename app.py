@@ -165,7 +165,7 @@ def handle_midi_k_input(event, data=None):
     if DEBUG:
         print('cc', cc, 'com', com, 'value', value)
 
-    if cc - m_ch == 176:
+    if cc - m_k_ch == 176:
         control_name = control[com][0]
         widget[com].set(value)
 
